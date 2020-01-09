@@ -33,11 +33,21 @@ public class WorkspaceManager {
 	public void invalidate(String name) {
 		workspaces.remove(name);
 	}
+	
+	public void rename(String name, String newName) throws IOException {
+		Workspace workspace = get(name);
+		invalidate(name);
+		workspaces.put(newName, workspace);
+	} 
 
 	public static synchronized WorkspaceManager getInstance() {
 		if (instance == null) {
 			instance = new WorkspaceManager();
 		}
 		return instance;
+	}
+	
+	public boolean workplaceExists(String name) {
+		return (workspaces.get(name) != null);
 	}
 }
