@@ -60,7 +60,7 @@
 						<h5 class="mb-2">Parent</h5>
 						<select class="form-control mb-4" v-bind:value="input.parent" v-on:change="setParent($event.target.value)">
 							<option value="" selected/>
-							<option v-for="(input, uuid) in inputs" v-bind:value="uuid">{{input.name}}</option>
+							<option v-for="(input, uuid) in inputs" v-bind:value="uuid" v-bind:key="input.name">{{input.name}}</option>
 						</select>
 
 						<h5 class="mb-2">Input</h5>

@@ -1,11 +1,11 @@
 package de.materna.dmn.tester;
 
 import de.materna.dmn.tester.servlets.filters.CSRFFilter;
-import de.materna.dmn.tester.servlets.workspace.WorkspaceServlet;
 import de.materna.dmn.tester.servlets.input.InputServlet;
 import de.materna.dmn.tester.servlets.model.ModelServlet;
 import de.materna.dmn.tester.servlets.output.OutputServlet;
 import de.materna.dmn.tester.servlets.test.TestServlet;
+import de.materna.dmn.tester.servlets.workspace.WorkspaceServlet;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;

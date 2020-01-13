@@ -41,6 +41,7 @@ public class ModelServlet {
 			DMNModel dmnModel = DroolsHelper.getModel(workspace.getDecisionSession());
 
 			Model model = new Model(dmnModel.getName(), dmnModel.getDecisions(), dmnModel.getBusinessKnowledgeModels(), dmnModel.getDecisionServices());
+			
 			return Response.status(Response.Status.OK).entity(SerializationHelper.getInstance().toJSON(model)).build();
 		}
 		catch (IOException exception) {
