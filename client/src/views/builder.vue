@@ -13,7 +13,7 @@
 							</div>
 							<select class="form-control" v-on:change="importInput(inputs[$event.target.value].value)">
 								<option selected disabled>Select Template...</option>
-								<option v-for="(input, key) in inputs" v-bind:value="key">{{input.name}}</option>
+								<option v-for="(input, key) in inputs" v-bind:value="key" :key="input.name">{{input.name}}</option>
 							</select>
 						</div>
 					</div>
