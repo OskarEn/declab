@@ -125,7 +125,7 @@
             </div>-->
 			<div class="card-body">
             <input type="text" class="form-control" placeholder="Enter new name"/>
-            <button class="btn btn-block btn-outline-success" v-on:click="saveName">Save</button>
+            <button class="btn btn-block btn-outline-success" v-on:click="updateWorkspace">Save</button>
 			</div>
           </div>
         </div>
@@ -191,7 +191,25 @@ export default {
     async deleteWorkspace() {
       await Network.deleteWorkspace();
       await this.$router.push("/");
-    },
+	},
+	
+	async updateWorkspace() {
+		const model = Network.getModel()
+		const oldEndpoint = configuration.endpoint.split("/")
+		const len = oldEndpoint.length
+
+		this.deleteWorkspace()
+		console.log("Endpoint delete")
+		
+		const host = oldEndpoint[0]
+		Network.setEndpoint(host, "xyzy")
+		Network.importModel(model)
+		
+		this.configuration.endpoint = Network._endpoint;
+
+		await this.$router.push("/");
+		//should go to newname/model
+	},
 
     // Helpers
     updateDeveloperMode() {
