@@ -123,10 +123,10 @@
 				</div>
               </div>
             </div>-->
-			<div class="card-body">
-            <input type="text" class="form-control" placeholder="Enter new name"/>
-            <button class="btn btn-block btn-outline-success" v-on:click="updateWorkspace">Save</button>
-			</div>
+            <div class="card-body">
+              <input type="text" class="form-control" placeholder="Enter new name" v-model="name"/>
+              <button class="btn btn-block btn-outline-success" @click="updateWorkspace">Save</button>
+            </div>
           </div>
         </div>
         <div class="col-6">
@@ -161,7 +161,9 @@ export default {
       configuration: {
         endpoint: Network._endpoint,
         developerMode: Configuration.getDeveloperMode()
-      }
+        
+      },
+      name: '',
     };
   },
   methods: {
@@ -188,28 +190,28 @@ export default {
       );
       this.$root.loading = false;
     },
+
     async deleteWorkspace() {
       await Network.deleteWorkspace();
       await this.$router.push("/");
-	},
-	
-	async updateWorkspace() {
-		const model = Network.getModel()
-		const oldEndpoint = configuration.endpoint.split("/")
-		const len = oldEndpoint.length
+    },
 
-		this.deleteWorkspace()
-		console.log("Endpoint delete")
-		
-		const host = oldEndpoint[0]
-		Network.setEndpoint(host, "xyzy")
-		Network.importModel(model)
-		
-		this.configuration.endpoint = Network._endpoint;
+    async updateWorkspace() {
+      const model = Network.getModel();
+      const oldEndpoint = this.configuration.endpoint.split("/");
+      const len = oldEndpoint.length;
 
-		await this.$router.push("/");
-		//should go to newname/model
-	},
+
+      const host = oldEndpoint[0];
+      await Network.setEndpoint(host, this.name);
+      await Network.importModel(model);
+
+      this.configuration.endpoint = Network._endpoint;
+
+      await this.$router.push(_endpoint) 
+
+      //should go to newname/model
+    },
 
     // Helpers
     updateDeveloperMode() {
